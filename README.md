@@ -56,7 +56,7 @@ El servicio dispone de un solo endpoint que sirve para registrar un usuario en p
 
 	v1/register-user
 
-El formato json de entrada debe ser de la siguiente manera (ejemplo)
+El formato json de entrada debe ser de la siguiente manera (ejemplo).
 
 	{
     "name": "Juan Rodriguez",
@@ -70,7 +70,7 @@ El formato json de entrada debe ser de la siguiente manera (ejemplo)
         }
     ]}
 
-La respuesta exitosa debe contener la misma informacion ademas de informacion adicional del resgitro
+La respuesta exitosa debe contener la misma informacion ademas de informacion adicional del resgitro.
 
 	{
     "message": "successfully saved",
@@ -106,3 +106,18 @@ Se puede dar que el sistema arroje algunas validaciones como por ejemplo:
 		{"message": "400 BAD_REQUEST","description": "Email already exists"}
 
 	![image](https://github.com/paytonx10/create-user-nissum/assets/75043426/d2f8a202-e361-4641-bdfe-6ce6048bbebe)
+
+Otra característica es que para este proyecto no se necesita correr un script de BD ya que posee la librería de H2 para el manejo de bd temporal, es decir solo estará creada cuando el proyecto este ejecutándose localmente, una vez reiniciado todos los datos se eliminarán.
+
+Levantamiento de BD - init service
+
+	Hibernate: create table phone (id uuid not null, city_code varchar(255), country_code varchar(255), number varchar(255), user_id uuid, primary key (id))
+	Hibernate: create table users (id uuid not null, created timestamp(6), email varchar(255), is_active boolean, last_login timestamp(6), 
+ 	modified timestamp(6), name varchar(255), password varchar(255), token uuid, primary key (id))
+	Hibernate: alter table if exists phone add constraint FKik7a2etdorybvoolvchfcvgkx foreign key (user_id) references users
+
+
+Ejemplo de bd con registro creado:
+
+![image](https://github.com/paytonx10/create-user-nissum/assets/75043426/a236bb3d-c83a-4721-b277-4e507a281166)
+
