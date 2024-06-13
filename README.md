@@ -1,0 +1,108 @@
+# Proyecto para Nissum - Creacion de Usuario - creat-user-nissum
+
+Este proyecto tiene como finalidad registrar usuarios con sus características principales y de contacto, bajo ciertos parámetros de cumplimiento como la entrada y salida en formato JSON, 
+Mediante un servicio REST y bajo el marco de trabajo de Spring con BD relacional.
+
+## Tabla de Contenidos
+
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Documentación API](#documentacion)
+- [Características](#características)
+
+## Instalación
+
+Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local.
+
+### Prerrequisitos
+
+- Java JDK 17 o superior instalado (puedes descargarlo desde [adoptopenjdk.net](https://adoptopenjdk.net/))
+- Maven instalado (puedes descargarlo desde [maven.apache.org](https://maven.apache.org/download.cgi))
+
+
+1. **Clonar el Repositorio**
+
+   ```bash
+   git clone https://github.com/TuUsuario/TuRepositorio.git
+   cd TuRepositorio
+
+1. **Compilar el Proyecto**
+
+    Ejecuta el siguiente comando para compilar el proyecto y descargar las dependencias:
+
+   ```bash
+    mvn clean install
+
+## Uso 
+
+ Puedes ejecutar el proyecto usando Maven:
+
+    mvn spring-boot:run
+	 
+
+## Documentación API
+Para acceder a la documentación de la API utilizando Swagger:
+
+    http://localhost:8080/swagger-ui.html
+
+![image](https://github.com/paytonx10/create-user-nissum/assets/75043426/12c0663e-3b91-48d3-ae6b-c62cf028f139)
+
+O puede ser tambien mediante Postman:
+
+![image](https://github.com/paytonx10/create-user-nissum/assets/75043426/cd3910ea-69a3-47f9-a641-5baf71880ac6)
+
+## Caracteristicas
+El servicio dispone de un solo endpoint que sirve para registrar un usuario en particular:
+
+	v1/register-user
+
+El formato json de entrada debe ser de la siguiente manera (ejemplo)
+
+	{
+    "name": "Juan Rodriguez",
+    "email": "juan@rodriguez.rg",
+    "password": "hunter2",
+    "phones": [
+        {
+            "number": "1234567",
+            "cityCode": "1",
+            "countryCode": "57"
+        }
+    ]}
+
+La respuesta exitosa debe contener la misma informacion ademas de informacion adicional del resgitro
+
+	{
+    "message": "successfully saved",
+    "description": {
+        "name": "Juan Rodriguez",
+        "email": "juan@rodriguez.rg",
+        "password": "hunter2",
+        "phones": [
+            {
+                "number": "1234567",
+                "cityCode": "1",
+                "countryCode": "57"
+            }
+        ],
+        "id": "610cbe59-5d76-475d-adab-0b28dc76dab5",
+        "created": "2024-06-12",
+        "modified": "2024-06-12",
+        "lastLogin": "2024-06-12",
+        "token": "dc4f5267-da8d-4639-a5e0-1406f613291a",
+        "isActive": true
+    }}
+
+Se puede dar que el sistema arroje algunas validaciones como por ejemplo:
+
+- Email Inválido
+
+		{"message": "400 BAD_REQUEST","description": "Invalid email format"}
+  	
+  	![image](https://github.com/paytonx10/create-user-nissum/assets/75043426/16003004-fdf8-4272-b52a-21abc049e968)
+
+- Registro (email) ya existente
+
+		{"message": "400 BAD_REQUEST","description": "Email already exists"}
+
+	![image](https://github.com/paytonx10/create-user-nissum/assets/75043426/d2f8a202-e361-4641-bdfe-6ce6048bbebe)
