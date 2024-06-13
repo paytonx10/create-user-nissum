@@ -1,4 +1,4 @@
-# Proyecto para Nissum - Creacion de Usuario - creat-user-nissum
+# Proyecto para Nisum - Creacion de Usuario - creat-user-nissum
 
 Este proyecto tiene como finalidad registrar usuarios con sus características principales y de contacto, bajo ciertos parámetros de cumplimiento como la entrada y salida en formato JSON, 
 Mediante un servicio REST y bajo el marco de trabajo de Spring con BD relacional.
